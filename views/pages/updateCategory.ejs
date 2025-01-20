@@ -10,9 +10,7 @@
       </div>
     </div>
     <div id="main-wrapper">
-<%- include('../layout/header') %>
-<%- include('../layout/sidebar') %>
-
+      <%- include('../layout/header') %> <%- include('../layout/sidebar') %>
 
       <div class="page-wrapper">
         <div class="page-breadcrumb">
@@ -32,21 +30,35 @@
             </div>
           </div>
         </div>
-        <form class="form-horizontal" method="post" action="api/addCategory">
+        <form
+          class="form-horizontal"
+          method="post"
+          action="/api/category/<%= category._id %>"
+        >
           <div class="card-body">
-              <h4 class="card-title">Personal Info</h4>
-              <div class="form-group row">
-                  <label for="fname" class="col-sm-3 text-right control-label col-form-label">Category</label>
-                  <div class="col-sm-9">
-                      <input type="text" class="form-control" id="fname" placeholder="Add Category Here" name="cat_name">
-                  </div>
+            <h4 class="card-title">Personal Info</h4>
+            <div class="form-group row">
+              <label
+                for="fname"
+                class="col-sm-3 text-right control-label col-form-label"
+                >Update Category</label
+              >
+              <div class="col-sm-9">
+                <input
+                  type="text"
+                  class="form-control"
+                  id="fname"
+                  placeholder="First Name Here"
+                  value="<%= category.cat_name %>"
+                  name="cat_name"
+                />
               </div>
-             
+            </div>
           </div>
-              <div class="card-body">
-                  <button class="btn btn-primary">Submit</button>
-              </div>
-      </form>
+          <div class="card-body">
+            <button class="btn btn-primary">Update</button>
+          </div>
+        </form>
         <footer class="footer text-center">
           All Rights Reserved by Matrix-admin. Designed and Developed by
           <a href="https://wrappixel.com">WrapPixel</a>.
@@ -57,4 +69,3 @@
     <%- include('../layout/jsLink') %>
   </body>
 </html>
-  

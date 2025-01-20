@@ -10,10 +10,7 @@ exports.store = async (req, res) => {
       });
     } else {
       await Category.create({ cat_name });
-      res.json({
-        success: true,
-        message: "category added",
-      });
+      res.redirect("/viewCategory")
     }
   } catch (err) {
     console.log(err);
@@ -23,8 +20,18 @@ exports.trash=async(req,res)=>{
   try{
     const {id}=req.params
     await Category.findByIdAndDelete(id)
-    res.json("deleted")
+    res.redirect("/viewCategory")
   }catch(err){
    res.json(err)
+  }
+}
+
+exports.update=async(req,res)=>{
+  try{
+    const {id}=req.params
+    await Category.findByIdAndUpdate({_id:id},{cat_name:req.body.cat_name})
+    res.redirect("/viewCategory")
+  }catch(err){
+    res.json(err)
   }
 }
