@@ -37,6 +37,7 @@ router.get("/login", (req, res) => {
 router.get("/logout", (req, res) => {
   res.clearCookie("admin");
   res.redirect("/login");
+  // {message:req.flash("info")}
 });
 router.get("/myProfile",async (req, res) => {
   // const admin = req.cookies.admin;
@@ -47,5 +48,10 @@ router.get("/myProfile",async (req, res) => {
   const singleAdmin=await Admin.findOne({email})
   res.render('pages/myProfile',{admin:singleAdmin})
 });
+
+router.get('/changePassword',async(req,res)=>{
+  const email=await req.cookies.admin.email
+  res.render('pages/changePassword',{email})
+})
 
 module.exports = router;
